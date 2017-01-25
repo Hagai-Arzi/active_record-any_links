@@ -1,66 +1,9 @@
 require "spec_helper"
-require 'database_helper'
-
-class AnyLinks < ActiveRecord::Base
-end
-
-def initialize_schema
-  initialize_database do
-    [:books, :readers, :libraries, :floors, :rooms].each do |table_name|
-      create_table table_name do |t|
-        t.string :name
-      end
-    end
-
-    create_table "any_links" do |t|
-      t.integer :id1
-      t.string  :type1
-      t.integer :id2
-      t.string  :type2
-    end
-
-    add_index(:any_links, [:id1, :id2, :type1, :type2], unique: true)
-    add_index(:any_links, [:id1, :type1, :type2])
-    add_index(:any_links, [:id2, :type1, :type2])
-  end
-end
-
-initialize_schema
-
-RSpec.describe ActiveRecord::AnyLinks do
-  it "has a version number" do
-    expect(ActiveRecord::AnyLinks::VERSION).not_to be nil
-  end
-end
+require "models"
 
 describe ActiveRecord::AnyLinks do
-  class Reader < ActiveRecord::Base
-  end
-
-  class Library < ActiveRecord::Base
-  end
-
-  module AModule
-    class Book < ActiveRecord::Base
-      has_many_to_many :readers
-      has_many_to_many :alias_readers, class_name: :Reader
-      has_many_to_many :books, class_name: "AModule::Book"
-      has_many_to_many :libraries
-      validates_presence_of :name
-    end
-  end
-
-  class Reader < ActiveRecord::Base
-    has_many_to_many :books, class_name: AModule::Book
-    has_many_to_many :readers
-    has_many_to_many :libraries
-    validates_presence_of :name
-  end
-
-  class Library < ActiveRecord::Base
-    has_many_to_many :books, class_name: AModule::Book
-    has_many_to_many :readers
-    validates_presence_of :name
+  it "has a version number" do
+    expect(ActiveRecord::AnyLinks::VERSION).not_to be nil
   end
 
   describe :global_object_links do
@@ -181,14 +124,6 @@ describe ActiveRecord::AnyLinks do
         end
       end
     end
-  end
-
-  class Floor < ActiveRecord::Base
-    has_many_to_one :rooms
-  end
-
-  class Room < ActiveRecord::Base
-    has_one_to_many :floors
   end
 
   def prepare_has_one_test(room_state, floor_state)
