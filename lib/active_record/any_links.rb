@@ -1,7 +1,10 @@
-require "active_record/any_links/version"
+require 'active_record'
+require 'active_record/any_links/version'
+require 'active_record/any_links/class_methods'
 
 module ActiveRecord
-  module AnyLinks
-    # Your code goes here...
+  class Base
+    # include AnyLinks
+    extend AnyLinks::ClassMethods
   end
 end
