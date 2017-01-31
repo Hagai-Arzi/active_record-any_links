@@ -144,6 +144,8 @@ module ActiveRecord
         has_many_to_many(collection, options.merge(before_add: -> (_owner, obj) { obj.send(name.demodulize.underscore.pluralize).clear }))
       end
 
+      private
+
       def identical_source_collection_class(collection_or_class)
         name == collection_or_class.to_s.singularize.classify
       end

@@ -4,7 +4,6 @@ require 'active_record/any_links/class_methods'
 
 module ActiveRecord
   class Base
-    # include AnyLinks
     extend AnyLinks::ClassMethods
   end
 end

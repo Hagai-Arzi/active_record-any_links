@@ -176,12 +176,26 @@ collections of associated objects will be added:
       has_many_to_many :authors, class_name: "Person"       # specify that linked class is Person
 ```
 
-## Development
+## has_one_to_many, has_many_to_one
 
+has_one_to_many Specifies a one-to-many bi-directional association.
+The has_one_to_many is declared in one side of the association models. The other side must declare the opposite direction with has_many_to_one decleration.
+Notice: It differ from has_many_to_many, which will work also if only one side of the association is
+declared.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+The has_one_to_many and has_many_to_one use the has_many_to_many to create the relatioships, in the same
+table, but with restriction to a single connection from the has_one side.
+It means that the decleration creates plural helper functions as above in additition to the following
+singular helper functions.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+#### Singular Auto-generated methods
+
+```ruby
+  other
+  other=other
+  other_id
+  other_id=id
+```
 
 ## Contributing
 
