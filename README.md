@@ -1,6 +1,12 @@
 # AnyLinks
 
-AnyLinks is an ActiveRecord extension which enables simple linking any model to any other model, using a single line statement and a single table.
+AnyLinks is an ActiveRecord extension which enables simple linking any model to any other model.
+
+It requires a single table holding the connection of all types, and a single statement for each linked model.
+No pass-through model required.
+
+The links can be many-to-many or one-to-many, and can link
+also any model to itself, with bidirectional connection.
 
 It is a simple-to-use extension to the polymorphic schema, but without the complexity and with much more capabilities.
 
