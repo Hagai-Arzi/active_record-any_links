@@ -9,8 +9,11 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Hagai Arzi"]
   spec.email         = ["Hagai.Arzi@Gmail.com"]
 
-  spec.summary       = %q{Enable link objects of different models in a single table using only a single statement.}
-  spec.description   = %q{Enable link objects of different models in a single table using has_many_to_many, has_one_to_many or has_many_to_one methods.}
+  spec.summary       = %q{Link objects of different models easily, using a single common connection table. }
+  spec.description   = %q{Link objects of different models in a single common table named "any_links" using
+                       has_many_to_many, has_many_to_one or has_one_to_many new methods.
+                       There is no need for creating a new table for any connection type, nor buiding an
+                       "has_many through" associations.}
   spec.homepage      = "https://github.com/Hagai-Arzi/active_record-any_links/tree/master/lib/active_record"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
